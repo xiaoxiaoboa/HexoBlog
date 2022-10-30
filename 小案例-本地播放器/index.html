@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="YUANXIAOXIN">
+    
+    <title>
+        
+            小案例--本地播放器 |
+        
+        XIAOXIN&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.staticaly.com/gh/xiaoxiaoboa/blog-pic@main/favicon.3i8ti0kriz00.svg">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.1/source/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.1/source/fontawesome/css/regular.min.css">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.1/source/fontawesome/css/solid.min.css">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-keep@3.5.1/source/fontawesome/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"freezxb.cc","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","logo":null,"favicon":"https://cdn.staticaly.com/gh/xiaoxiaoboa/blog-pic@main/favicon.3i8ti0kriz00.svg","avatar":"https://cdn.staticaly.com/gh/xiaoxiaoboa/blog-pic@main/avatar.6i50zenvqzc0.webp","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":true},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":{"enable":false}},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.5.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"};
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+               XIAOXIN&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">小案例--本地播放器</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://cdn.staticaly.com/gh/xiaoxiaoboa/blog-pic@main/avatar.6i50zenvqzc0.webp">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">YUANXIAOXIN</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2022-06-07 13:43:14</span>
+        <span class="mobile">2022-06-07 13:43</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2022-06-07 13:58:48</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/React/">React</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                <p> 小案例—本地音乐播放器</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/xiaoxiaoboa/blog-pic@main/Untitled.6eaooc4yw600.webp"
+                      alt="Untitled"
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/xiaoxiaoboa/blog-pic@main/Untitled-1-tuya.gp506xapwwg.png"
+                      alt="Untitled-1-tuya"
+                ></p>
+<p>界面很简单，由于自己不喜欢用现在市场上的音乐软件，比较喜欢下载歌曲后用本地播放器听歌，加上学了React后需要案例练手所以就产生了做个自己的本地播放器。程序和实现都是很基础的。</p>
+<p>用到的技术就是 Vite&#x2F;React  用的是原生API，无第三方包</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://localplayer.netlify.app/" >预览（部署在netlify）<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><ol>
+<li>导入本地文件夹</li>
+<li>显示歌曲列表，显示数量</li>
+<li>随机播放</li>
+<li>双击歌曲名播放</li>
+<li>自动下一首</li>
+<li>列表内搜索</li>
+</ol>
+<h1 id="学到的新知识"><a href="#学到的新知识" class="headerlink" title="学到的新知识"></a>学到的新知识</h1><h2 id="context"><a href="#context" class="headerlink" title="context"></a>context</h2><p>用于组件间共享state，很轻量</p>
+<p>说实话一直没搞懂这个，还需要仔细看这个点</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createContext, useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">SongsContext</span> = <span class="title function_">createContext</span>([])</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">SongsContextProvider</span> = (<span class="params">&#123; children &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [state, dispatch] = <span class="title function_">useState</span>([])</span><br><span class="line">  <span class="keyword">const</span> [playing, setPlaying] = <span class="title function_">useState</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">SongsContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;&#123;</span> <span class="attr">state</span>, <span class="attr">dispatch</span>, <span class="attr">playing</span>, <span class="attr">setPlaying</span> &#125;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;children&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">SongsContext.Provider</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="回调-callback"><a href="#回调-callback" class="headerlink" title="回调 callback"></a>回调 callback</h2><p>用到的地方很多，但一直没有细想它的流程是是什么样的</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">fn</span> = F =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="title function_">F</span>(num)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fn</span>(<span class="function"><span class="params">num</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(num)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>fn是一个函数，接受一个参数F，函数体内是一个常量num值为1 。</p>
+<p>函数最后调用F并传入参数num</p>
+<p>调用fn时，传入一个参数（箭头函数），由于传入的参数在fn的最后被以函数形式调用并传了参数，所以箭头函数就可以接收到fn中执行F时传入的参数</p>
+<p>总结来说：调用fn时传入一个函数参数，在fn函数体执行完毕后，fn帮我们调用了传入的函数参数，而且还可以把fn函数体内的各种值作为参数传递给我们的函数</p>
+<p>解释的不是很清楚，意思是那个意思</p>
+<h1 id="input上传"><a href="#input上传" class="headerlink" title="input上传"></a>input上传</h1><p>本案例用到了input上传文件夹</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">  id=<span class="string">&quot;file&quot;</span></span><br><span class="line">  type=<span class="string">&quot;file&quot;</span></span><br><span class="line">  hidden</span><br><span class="line">  webkitdirectory=<span class="string">&quot;true&quot;</span></span><br><span class="line">  multiple=&#123;<span class="literal">true</span>&#125;</span><br><span class="line">  onChange=&#123;handleImport&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>首先type属性的值要是file，是为上传文件</p>
+<ol>
+<li>hidden：隐藏控件</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLInputElement/webkitdirectory" >webkitdirectory<i class="fas fa-external-link-alt"></i></a> ：上传的是文件夹类型</li>
+<li>multiple：允许多文件</li>
+</ol>
+<p>当使用了webkitdirectory时，需要上传文件夹，文件夹内所有文件的对象会被保存到files属性中</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://cdn.jsdelivr.net/gh/xiaoxiaoboa/blog-pic@main/Untitled-2-tuya.12u7dvjfnchs.png"
+                      alt="Untitled-2-tuya"
+                ></p>
+<h2 id="audio音频"><a href="#audio音频" class="headerlink" title="audio音频"></a>audio音频</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;audio</span><br><span class="line">	src=&#123;playing ? <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(playing) : <span class="string">&quot;&quot;</span>&#125;</span><br><span class="line">	onLoadedMetadata=&#123;handleLoad&#125;</span><br><span class="line">	controls</span><br><span class="line">	onEnded=&#123;handleShuffle&#125;</span><br><span class="line">	autoPlay=&#123;<span class="literal">true</span>&#125;</span><br><span class="line">	onPlay=&#123;handlePlayRotate&#125;</span><br><span class="line">	onPause=&#123;handlePauseRotate&#125;&gt;</span><br><span class="line">&lt;/audio&gt;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalEventHandlers/onloadedmetadata" >onLoadedMetadata<i class="fas fa-external-link-alt"></i></a> ： 元数据加载完成后的事件</li>
+<li>controls：控制面板</li>
+<li>onEnded：播放结束后的事件</li>
+<li>autoPlay：自动播放</li>
+<li>onPlay：播放开始时的事件</li>
+<li>onPause：播放暂停时的事件</li>
+</ol>
+<h2 id="URL-createObjectURL"><a href="#URL-createObjectURL" class="headerlink" title="URL.createObjectURL"></a>URL.createObjectURL</h2><p>创建一个DOMString对象，表示 File&#x2F;Blob对象</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;audio</span><br><span class="line">	src=&#123;playing ? <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(playing) : <span class="string">&quot;&quot;</span>&#125;</span><br><span class="line">&lt;/audio&gt;</span><br></pre></td></tr></table></figure>
+
+<p>根据MDN文档创建出来的对象使用完毕后需要用<strong>URL.revokeObjectURL</strong>来释放资源</p>
+
+            </div>
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98-useState/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">遇到问题 &gt; useState</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/%E7%BB%99%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%8A%A0%E4%B8%8A%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">给你的网站加上暗黑模式</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E5%88%B0%E7%9A%84%E6%96%B0%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">学到的新知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#context"><span class="nav-number">2.1.</span> <span class="nav-text">context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83-callback"><span class="nav-number">2.2.</span> <span class="nav-text">回调 callback</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#input%E4%B8%8A%E4%BC%A0"><span class="nav-number">3.</span> <span class="nav-text">input上传</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#audio%E9%9F%B3%E9%A2%91"><span class="nav-number">3.1.</span> <span class="nav-text">audio音频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL-createObjectURL"><span class="nav-number">3.2.</span> <span class="nav-text">URL.createObjectURL</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2022
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">YUANXIAOXIN</a>
+            
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.5.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/utils.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/main.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/header-shrink.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/back2top.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/post-helper.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/toc.js"></script><script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/libs/anime.min.js"></script>
+    
+</div>
+
+
+    <script src="//unpkg.com/hexo-theme-keep@3.5.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
